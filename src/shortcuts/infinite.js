@@ -28,7 +28,7 @@
       this.$container.addClass(this.options.loadingClass)
 
       $.get($(this.options.more).attr('href'), $.proxy(function(data) {
-        var $data = $($.parseHTML(data))
+        var $data = $($.parseHTML(data, undefined, this.options.keepScripts))
         var $newMore = $data.find(this.options.more)
 
         var $items = $data.find(this.options.items)
@@ -70,7 +70,8 @@
     offset: 'bottom-in-view',
     loadingClass: 'infinite-loading',
     onBeforePageLoad: $.noop,
-    onAfterPageLoad: $.noop
+    onAfterPageLoad: $.noop,
+    keepScripts: false
   }
 
   Waypoint.Infinite = Infinite
